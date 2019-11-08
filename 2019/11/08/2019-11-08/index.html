@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>NLP实战：分析特朗普推特，预测股票走势 | 周嘉楠 | 复旦大数据 量化投资 人工智能AI 金融工程 自然语言处理NLP 知识图谱 CFA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言本文通过应用技术手段，基于Python建立一个工具，可以阅读和分析川普的Twitter。然后判断每条特定的Twitter是否具有川普本人的性格。同时我们还结合了其他的方法，包括Deep Learning、Machine Learning、NLP、LSTM等基于Python、Keras等，对川普的Twitter做个全面分析！ 给推文加上好坏标签将每条Twitter分解成单词12345678910">
+  <meta name="description" content="前言本文通过应用技术手段，基于Python建立一个工具，可以阅读和分析川普的Twitter。然后判断每条特定的Twitter是否具有川普本人的性格。同时我们还结合了其他的方法，包括Deep Learning、Machine Learning、NLP、LSTM等基于Python、Keras等，对川普的Twitter做个全面分析！ 1. 给推文加上好坏标签1.1 将每条Twitter分解成单词1234">
 <meta name="keywords" content="技术,金融,量化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NLP实战：分析特朗普推特，预测股票走势">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;2019-11-08&#x2F;index.html">
 <meta property="og:site_name" content="周嘉楠 | 复旦大数据 量化投资 人工智能AI 金融工程 自然语言处理NLP 知识图谱 CFA">
-<meta property="og:description" content="前言本文通过应用技术手段，基于Python建立一个工具，可以阅读和分析川普的Twitter。然后判断每条特定的Twitter是否具有川普本人的性格。同时我们还结合了其他的方法，包括Deep Learning、Machine Learning、NLP、LSTM等基于Python、Keras等，对川普的Twitter做个全面分析！ 给推文加上好坏标签将每条Twitter分解成单词12345678910">
+<meta property="og:description" content="前言本文通过应用技术手段，基于Python建立一个工具，可以阅读和分析川普的Twitter。然后判断每条特定的Twitter是否具有川普本人的性格。同时我们还结合了其他的方法，包括Deep Learning、Machine Learning、NLP、LSTM等基于Python、Keras等，对川普的Twitter做个全面分析！ 1. 给推文加上好坏标签1.1 将每条Twitter分解成单词1234">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-08T06:04:57.519Z">
+<meta property="og:updated_time" content="2019-11-08T07:59:51.776Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="周嘉楠 | 复旦大数据 量化投资 人工智能AI 金融工程 自然语言处理NLP 知识图谱 CFA" type="application/atom+xml">
@@ -202,9 +202,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文通过应用技术手段，基于Python建立一个工具，可以阅读和分析川普的Twitter。然后判断每条特定的Twitter是否具有川普本人的性格。同时我们还结合了其他的方法，包括Deep Learning、Machine Learning、NLP、LSTM等基于Python、Keras等，对川普的Twitter做个全面分析！</p>
-<h2 id="给推文加上好坏标签"><a href="#给推文加上好坏标签" class="headerlink" title="给推文加上好坏标签"></a>给推文加上好坏标签</h2><h3 id="将每条Twitter分解成单词"><a href="#将每条Twitter分解成单词" class="headerlink" title="将每条Twitter分解成单词"></a>将每条Twitter分解成单词</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tweet_ string = <span class="string">"Thanks to the historic TAX CUTS that I signed into law,\</span></span><br><span class="line"><span class="string">your paychecks are going way UP, your taxes are going way DOMN, and America is \</span></span><br><span class="line"><span class="string">once again OPEN FOR BUSINESS!"</span></span><br><span class="line">tweet_ words = tweet_ string. splitO</span><br><span class="line">number. of words = Len(Ctweet words)</span><br><span class="line">print(tweet_ words)</span><br><span class="line">print(<span class="string">"Number of words in this tweet is: ”+ str(number. of words))</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Iterate through the words in the tweet string</span></span><br><span class="line"><span class="string">print("</span>Words <span class="keyword">in</span> the tweet are: <span class="string">")</span></span><br><span class="line"><span class="string">for W in tweet_ words:</span></span><br><span class="line"><span class="string">  len of W = len(w)</span></span><br><span class="line"><span class="string">  print("</span>number of letters <span class="keyword">in</span>”+ w +<span class="string">" is"</span>+ str(len_of_w) )</span><br><span class="line">print(<span class="string">"End of the words in the tweet"</span>)</span><br></pre></td></tr></table></figure>
-
-
+<h2 id="1-给推文加上好坏标签"><a href="#1-给推文加上好坏标签" class="headerlink" title="1. 给推文加上好坏标签"></a>1. 给推文加上好坏标签</h2><h3 id="1-1-将每条Twitter分解成单词"><a href="#1-1-将每条Twitter分解成单词" class="headerlink" title="1.1 将每条Twitter分解成单词"></a>1.1 将每条Twitter分解成单词</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">tweet_string = <span class="string">"Thanks to the historic TAX CUTS that I signed into law,\</span></span><br><span class="line"><span class="string">your paychecks are going way UP, your taxes are going way DOMN, and America is \</span></span><br><span class="line"><span class="string">once again OPEN FOR BUSINESS!"</span></span><br><span class="line"></span><br><span class="line">tweet_words = tweet_string.split()</span><br><span class="line">number_of_words = len(tweet_words)</span><br><span class="line">print(tweet_words)</span><br><span class="line">print(<span class="string">"Number of words in this tweet is:"</span> + str(number_of_words))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterate through the words in the tweet string 遍历tweet字符串中的单词</span></span><br><span class="line">print(<span class="string">"Words in the tweet are: "</span>)</span><br><span class="line"><span class="keyword">for</span> w <span class="keyword">in</span> tweet_words:</span><br><span class="line">    len_of_w = len(w)</span><br><span class="line">    print(<span class="string">"number of letters in"</span> + w + <span class="string">"is"</span> + str(len_of_w))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"End of the words in the tweet"</span>)</span><br></pre></td></tr></table></figure>
+<p>我们手动复制了Trump的一条Twitter，将其分配给一个变量，并使用split方法将其分解为单词。split返回一个列表，我们称之为tweet_words。我们可以使用len函数计算列表中的项数。在第6行和第7行中，我们打印前面步骤的结果。</p>
+<p>最后，在第10行中，我们循环遍历tweet_words：也就是说，我们逐个遍历tweet_words项，将其存储在w中，然后在第11行和第12行处理w。所以，第11行和第12行被执行了很多次，每一次都有不同的w值。</p>
 
       
 
@@ -356,7 +356,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给推文加上好坏标签"><span class="toc-number">2.</span> <span class="toc-text">给推文加上好坏标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#将每条Twitter分解成单词"><span class="toc-number">2.1.</span> <span class="toc-text">将每条Twitter分解成单词</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-给推文加上好坏标签"><span class="toc-number">2.</span> <span class="toc-text">1. 给推文加上好坏标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-将每条Twitter分解成单词"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 将每条Twitter分解成单词</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -504,10 +504,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
@@ -517,6 +513,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">量化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
             
             <div class="clearfix"></div>
