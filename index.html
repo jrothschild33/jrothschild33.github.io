@@ -243,7 +243,8 @@
 <p>现在，我们的程序所做的就是分配一个Twitter字符串文档，加载一个单词权重字典，并使用加载的字典分析该Twitter字符串文档。</p>
 <h2 id="4-从Twitter读取推文"><a href="#4-从Twitter读取推文" class="headerlink" title="4. 从Twitter读取推文"></a>4. 从Twitter读取推文</h2><p> 为了从Twitter读取数据，我们需要访问它的API（应用程序编程接口）。API是应用程序的接口，开发人员可以使用它访问应用程序的功能和数据。</p>
 <p>通常，Twitter、Facebook等公司允许开发人员通过API访问用户数据。但是，你可能知道，用户数据对这些公司非常有价值。此外，当涉及到用户数据时，许多安全和隐私问题就会出现。因此，这些公司希望跟踪、验证和限制开发人员及其应用程序对其API的访问。</p>
-<h3 id="4-1-获取Twitter-API-Keys-Access-Token"><a href="#4-1-获取Twitter-API-Keys-Access-Token" class="headerlink" title="4. 1 获取Twitter API Keys Access Token"></a>4. 1 获取Twitter API Keys Access Token</h3><p>因此，如果您想访问Twitter数据，首先需要登录Twitter（如果您没有Twitter帐户，则需要登录），然后访问<a href="https://apps.twitter.com/" target="_blank" rel="noopener">https://apps.twitter.com/</a>。单击Create New App按钮，填写表单，然后单击Create your Twitter Application按钮。<br><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/1.create%20an%20app.png" alt="Create your Twitter Application"><br><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/2.application.png" alt="申请后需等待审批"><br>在新页面中，选择API Keys选项卡，并单击Create my access token按钮。将生成一对新的访问令牌，即Access令牌密钥。将这些值与API密钥和API密钥一起复制。</p>
+<h3 id="4-1-获取Twitter-API-Keys-Access-Token"><a href="#4-1-获取Twitter-API-Keys-Access-Token" class="headerlink" title="4. 1 获取Twitter API Keys Access Token"></a>4. 1 获取Twitter API Keys Access Token</h3><p>因此，如果您想访问Twitter数据，首先需要登录Twitter（如果您没有Twitter帐户，则需要登录），然后访问<a href="https://apps.twitter.com/" target="_blank" rel="noopener">https://apps.twitter.com/</a>。单击Create New App按钮，填写表单，然后单击Create your Twitter Application按钮。<br><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/1.create%20an%20app.png" alt="Create your Twitter Application"></p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/2.application.png" alt="申请后需等待审批"><br>在新页面中，选择API Keys选项卡，并单击Create my access token按钮。将生成一对新的访问令牌，即Access令牌密钥。将这些值与API密钥和API密钥一起复制。</p>
 <h3 id="4-2-安装python-twitter包，完成API配置"><a href="#4-2-安装python-twitter包，完成API配置" class="headerlink" title="4. 2 安装python-twitter包，完成API配置"></a>4. 2 安装python-twitter包，完成API配置</h3><p>这是一个popular的包，用于在Python中使用Twitter API，关于它的更多介绍在Github上：<a href="https://github.com/bear/python-twitter" target="_blank" rel="noopener">python-twitter</a>。我们可以直接在pycharm中安装package<code>python-twitter</code></p>
 <p>现在，让我们快速测试一下我们的设置。运行python解释器，输入以下内容，并使用上一步复制的值替换你的：<code>_consumer_key</code>、<code>YOUR_CONSUMER_SECRET</code>、<code>YOUR_ACCESS_TOKEN</code>、<code>YOUR_ACCESS_TOKEN_SECRET</code></p>
 <p>新建twitter_api.py文件（随便起名），输入以下内容完成API配置：</p>
@@ -590,10 +591,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
@@ -603,6 +600,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">量化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
             
             <div class="clearfix"></div>
