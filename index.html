@@ -189,6 +189,72 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-11-24：梯度下降法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/24/2019-11-24%EF%BC%9A%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/">2019-11-24：梯度下降法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/24/2019-11-24%EF%BC%9A%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2019-11-24T08:20:10.819Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="梯度下降法：Gradient-Descent"><a href="#梯度下降法：Gradient-Descent" class="headerlink" title="梯度下降法：Gradient Descent"></a>梯度下降法：Gradient Descent</h1><h3 id="作者：Ryan-Tibshirani"><a href="#作者：Ryan-Tibshirani" class="headerlink" title="作者：Ryan Tibshirani"></a>作者：Ryan Tibshirani</h3><h2 id="一、正则凸规划：canonical-convex-programs"><a href="#一、正则凸规划：canonical-convex-programs" class="headerlink" title="一、正则凸规划：canonical convex programs"></a>一、正则凸规划：canonical convex programs</h2><p>1、线性规划(LP)inear program ：<br>$$<br>\begin{array}{cl}{\min _{x}} &amp; {c^{T} x} \ {\text { subject to }} &amp; {D x \leq d} \ {} &amp; {A x=b}\end{array}<br>$$<br>2、二次规划（QP）Quadratic program：类似于LP，但有二次准则<br>3、半定规划（SDP）Semidefinite program：类似于LP，但有矩阵<br>4、锥规划Conic program：最常见的形式</p>
+<h2 id="二、梯度下降法：Gradient-descent"><a href="#二、梯度下降法：Gradient-descent" class="headerlink" title="二、梯度下降法：Gradient descent"></a>二、梯度下降法：Gradient descent</h2><p>1、考虑无约束的光滑凸优化：<br>$$<br>\min _{x} f(x)<br>$$<br>\(f\)是凸函数，且可用\(\operatorname{dom}(f)=\mathbb{R}^{n}\)展开，用\(f^{\star}=\min _{x} f(x)\)表示最优条件值，解为\(x^{\star}\)</p>
+<p>2、梯度下降法：<br>选择初始点\(x^{(0)} \in \mathbb{R}^{n}\)，重复：<br>$$<br>x^{(k)}=x^{(k-1)}-t_{k} \cdot \nabla f\left(x^{(k-1)}\right), \quad k=1,2,3, \ldots<br>$$<br>在某点停止</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D1.png" alt="Gradient Descent"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/24/2019-11-24%EF%BC%9A%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-11-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -576,11 +642,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
