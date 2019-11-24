@@ -8,16 +8,26 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>梯度下降法：Gradient Descent | 周嘉楠 | 复旦大数据 量化投资 人工智能AI 金融工程 自然语言处理NLP 知识图谱 CFA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作者：Ryan Tibshirani一、正则凸规划：canonical convex programs1、线性规划(LP)inear program ：$$\begin{array}{cl}{\min _{x}} &amp;amp; {c^{T} x} \ {\text { subject to }} &amp;amp; {D x \leq d} \ {} &amp;amp; {A x=b}\end{array}$$2、">
+  <meta name="description" content="作者：Ryan Tibshirani[^1][^2][^3][^4] @toc 一、正则凸规划：canonical convex programs1、线性规划(LP)inear program ：$$\begin{array}{cl}{\min _{x}} &amp;amp; {c^{T} x} \ {\text { subject to }} &amp;amp; {D x \leq d} \ {} &amp;amp;">
 <meta name="keywords" content="技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="梯度下降法：Gradient Descent">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;24&#x2F;2019-11-24%EF%BC%9A%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;index.html">
 <meta property="og:site_name" content="周嘉楠 | 复旦大数据 量化投资 人工智能AI 金融工程 自然语言处理NLP 知识图谱 CFA">
-<meta property="og:description" content="作者：Ryan Tibshirani一、正则凸规划：canonical convex programs1、线性规划(LP)inear program ：$$\begin{array}{cl}{\min _{x}} &amp;amp; {c^{T} x} \ {\text { subject to }} &amp;amp; {D x \leq d} \ {} &amp;amp; {A x=b}\end{array}$$2、">
+<meta property="og:description" content="作者：Ryan Tibshirani[^1][^2][^3][^4] @toc 一、正则凸规划：canonical convex programs1、线性规划(LP)inear program ：$$\begin{array}{cl}{\min _{x}} &amp;amp; {c^{T} x} \ {\text { subject to }} &amp;amp; {D x \leq d} \ {} &amp;amp;">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D1.png">
-<meta property="og:updated_time" content="2019-11-24T08:44:16.376Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D10.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D11.png">
+<meta property="og:updated_time" content="2019-11-24T10:57:33.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;jrothschild.oss-cn-shanghai.aliyuncs.com&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95&#x2F;%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D1.png">
   
@@ -213,10 +223,107 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="作者：Ryan-Tibshirani"><a href="#作者：Ryan-Tibshirani" class="headerlink" title="作者：Ryan Tibshirani"></a>作者：Ryan Tibshirani</h3><h2 id="一、正则凸规划：canonical-convex-programs"><a href="#一、正则凸规划：canonical-convex-programs" class="headerlink" title="一、正则凸规划：canonical convex programs"></a>一、正则凸规划：canonical convex programs</h2><p>1、线性规划(LP)inear program ：<br>$$<br>\begin{array}{cl}{\min _{x}} &amp; {c^{T} x} \ {\text { subject to }} &amp; {D x \leq d} \ {} &amp; {A x=b}\end{array}<br>$$<br>2、二次规划（QP）Quadratic program：类似于LP，但有二次准则<br>3、半定规划（SDP）Semidefinite program：类似于LP，但有矩阵<br>4、锥规划Conic program：最常见的形式</p>
+        <p>作者：Ryan Tibshirani[^1][^2][^3][^4]</p>
+<p>@toc</p>
+<h2 id="一、正则凸规划：canonical-convex-programs"><a href="#一、正则凸规划：canonical-convex-programs" class="headerlink" title="一、正则凸规划：canonical convex programs"></a>一、正则凸规划：canonical convex programs</h2><p>1、线性规划(LP)inear program ：<br>$$<br>\begin{array}{cl}{\min _{x}} &amp; {c^{T} x} \ {\text { subject to }} &amp; {D x \leq d} \ {} &amp; {A x=b}\end{array}<br>$$<br>2、二次规划（QP）Quadratic program：类似于LP，但有二次准则<br>3、半定规划（SDP）Semidefinite program：类似于LP，但有矩阵<br>4、锥规划Conic program：最常见的形式</p>
 <h2 id="二、梯度下降法：Gradient-descent"><a href="#二、梯度下降法：Gradient-descent" class="headerlink" title="二、梯度下降法：Gradient descent"></a>二、梯度下降法：Gradient descent</h2><p>1、考虑无约束的光滑凸优化：<br>$$<br>\min _{x} f(x)<br>$$<br>\(f\)是凸函数，且可用\(\operatorname{dom}(f)=\mathbb{R}^{n}\)展开，用\(f^{\star}=\min _{x} f(x)\)表示最优条件值，解为\(x^{\star}\)</p>
 <p>2、梯度下降法：<br>选择初始点\(x^{(0)} \in \mathbb{R}^{n}\)，重复：<br>$$<br>x^{(k)}=x^{(k-1)}-t_{k} \cdot \nabla f\left(x^{(k-1)}\right), \quad k=1,2,3, \ldots<br>$$<br>在某点停止</p>
-<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D1.png" alt="Gradient Descent"></p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D1.png" alt="Gradient Descent1"></p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D2.png" alt="Gradient Descent2"></p>
+<h2 id="三、梯度下降法解释：Gradient-descent-interpretation"><a href="#三、梯度下降法解释：Gradient-descent-interpretation" class="headerlink" title="三、梯度下降法解释：Gradient descent interpretation"></a>三、梯度下降法解释：Gradient descent interpretation</h2><p>在每次迭代中，考虑以下扩展：<br>$$<br>f(y) \approx f(x)+\nabla f(x)^{T}(y-x)+\frac{1}{2 t}|y-x|_{2}^{2}<br>$$</p>
+<ul>
+<li>二次逼近（Quadratic approximation）:用\(\frac{1}{t} I\)代替常规的Hessian\(\nabla^{2} f(x)\)</li>
+<li>\(f\)的线性逼近：\(f(y) \approx f(x)+\nabla f(x)^{T}(y-x)\)</li>
+<li>\(x\)的近似形式，权重为\(1 /(2 t)\)：\(\frac{1}{2 t}|y-x|_{2}^{2}\)<br>选择下一个点\(y=x^{+}\)使得二次逼近最小化：<br>$$<br>x^{+}=x-t \nabla f(x)<br>$$</li>
+</ul>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D3.png" alt="Gradient Descent3"></p>
+<p>蓝色的点是\(x\)，红色的点是\(x^{+}=\underset{y}{\operatorname{argmin}} f(x)+\nabla f(x)^{T}(y-x)+\frac{1}{2 t}|y-x|_{2}^{2}\)</p>
+<h2 id="四、固定步长：Fixed-step-size"><a href="#四、固定步长：Fixed-step-size" class="headerlink" title="四、固定步长：Fixed step size"></a>四、固定步长：Fixed step size</h2><p>1、如果简单对所有\(k=1,2,3, \ldots\)取\(t_{k}=t\)，如果\(t\)过大的话可能产生偏差(diverge)。<br>考虑用\(f(x)=\left(10 x_{1}^{2}+x_{2}^{2}\right) / 2\)进行8步长的梯度下降</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D4.png" alt="Gradient Descent4"></p>
+<p>2、如果\(t\)过小的话可能太慢：比如100步长的梯度下降</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D5.png" alt="Gradient Descent5"></p>
+<p>3、当取合适的\(t\)时，则很好地收敛：比如40步长的梯度下降</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D6.png" alt="Gradient Descent6"></p>
+<p>随后的收敛分析将给我们一个精确的“刚好”的概念。</p>
+<h2 id="五、回溯线搜索：Backtracking-line-search"><a href="#五、回溯线搜索：Backtracking-line-search" class="headerlink" title="五、回溯线搜索：Backtracking line search"></a>五、回溯线搜索：Backtracking line search</h2><p>1、一种自适应选择步长大小的方法是使用回溯线搜索</p>
+<ul>
+<li>首先修正参数\(0&lt;\beta&lt;1\)和\(0&lt;\alpha \leq 1 / 2\)</li>
+<li>每次迭代时，从\(t=t_{\text {init }}\)开始，当\(f(x-t \nabla f(x))&gt;f(x)-\alpha t|\nabla f(x)|_{2}^{2}\)时，收缩\(t=\beta t\)，否则执行梯度下降更新：<br>$$<br>x^{+}=x-t \nabla f(x)<br>$$</li>
+</ul>
+<p>这种方法比较简单且在实际应用中工作的很好，若进一步简化，取\(\alpha=1 / 2\)</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D7.png" alt="Gradient Descent7"></p>
+<p>对我们来说：\(\Delta x=-\nabla f(x)\)</p>
+<p>2、设置\(\alpha=\beta=0.5\)，回溯法选择的步长大致是正确的（12个outer steps，一共40步）</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D8.png" alt="Gradient Descent8"></p>
+<h2 id="六、精确线搜索：Exact-line-search"><a href="#六、精确线搜索：Exact-line-search" class="headerlink" title="六、精确线搜索：Exact line search"></a>六、精确线搜索：Exact line search</h2><p>我们也可以尽量沿着负梯度方向选择步长，称为精确直线搜索法（exact line search）：<br>$$<br>t=\underset{s \geq 0}{\operatorname{argmin}} f(x-s \nabla f(x))<br>$$<br>但通常不可能做到精确的最小化，近似精确线搜索法通常不如回溯法有效，而且通常不值得这么做。</p>
+<h2 id="七、收敛性分析：Convergence-analysis"><a href="#七、收敛性分析：Convergence-analysis" class="headerlink" title="七、收敛性分析：Convergence analysis"></a>七、收敛性分析：Convergence analysis</h2><h3 id="（一）基本原理："><a href="#（一）基本原理：" class="headerlink" title="（一）基本原理："></a>（一）基本原理：</h3><p>1、假设\(f\)是凸可微函数，有\(\operatorname{dom}(f)=\mathbb{R}^{n}\)，此外当\(L&gt;0\)恒成立时，\(\nabla f\)是Lipschitz连续的：<br>$$<br>|\nabla f(x)-\nabla f(y)|<em>{2} \leq L|x-y|</em>{2} \text { for any } x, y<br>$$<br>或二阶可微：\(\nabla^{2} f(x) \preceq L I\)</p>
+<p>2、定理：有固定步长\(t \leq 1 / L\)的梯度下降满足：<br>$$<br>f\left(x^{(k)}\right)-f^{\star} \leq \frac{\left|x^{(0)}-x^{\star}\right|_{2}^{2}}{2 t k}<br>$$<br>同样的结果也适用于回溯法（用\(\beta / L\)代替\(t\))</p>
+<p>3、收敛速度：\(O(1 / k)\)，即它在\(O(1 / \epsilon)\)次迭代后找到次优点\( \epsilon\)</p>
+<h3 id="（二）强凸性分析：Analysis-for-strong-convexity"><a href="#（二）强凸性分析：Analysis-for-strong-convexity" class="headerlink" title="（二）强凸性分析：Analysis for strong convexity"></a>（二）强凸性分析：Analysis for strong convexity</h3><p>1、\(f\)的强凸性意味着对于某些\(m&gt;0\)，\(f(x)-\frac{m}{2}|x|_{2}^{2}\)是凸的（当二阶可导时：\(\nabla^{2} f(x) \succeq m I\))</p>
+<p>2、假设有Lipschitz梯度，也有强凸性：定理：具有固定步长\(t \leq 2 /(m+L)\)或回溯线的梯度下降满足：<br>$$<br>f\left(x^{(k)}\right)-f^{\star} \leq \gamma^{k} \frac{L}{2}\left|x^{(0)}-x^{\star}\right|_{2}^{2}<br>$$<br>其中\(0&lt;\gamma&lt;1\)</p>
+<p>3、收敛速度：\(O\left(\gamma^{k}\right)\)，非常快，呈指数级别！即在\(O(\log (1 / \epsilon))\)次迭代后找到次优点\( \epsilon\)</p>
+<p>4、线性收敛（linear convergence）：<br>在半对数图（semi-log）上，目标与迭代曲线呈线性关系</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D9.png" alt="Gradient Descent7"></p>
+<p>5、由于\(\gamma=O(1-m / L)\)，所以我们可以将收敛速度写作：<br>$$<br>O\left(\frac{L}{m} \log (1 / \epsilon)\right)<br>$$<br>更高的条件数值\(L / m\)会导致更慢的速度，这一点在理论和实践中都很明显。</p>
+<h3 id="（三）条件数值：A-look-at-the-conditions"><a href="#（三）条件数值：A-look-at-the-conditions" class="headerlink" title="（三）条件数值：A look at the conditions"></a>（三）条件数值：A look at the conditions</h3><p>对于以下简单问题：<br>$$<br>f(\beta)=\frac{1}{2}|y-X \beta|_{2}^{2}<br>$$<br>1、\(\nabla f\)的Lipschitz连续性：</p>
+<ul>
+<li><p>意味着：\(\nabla^{2} f(x) \preceq L I\)</p>
+</li>
+<li><p>当\(\nabla^{2} f(\beta)=X^{T} X\)，有\(L=\lambda_{\max }\left(X^{T} X\right)\)</p>
+<p>2、\(f\)的强凸性：</p>
+<ul>
+<li>意味着：\(\nabla^{2} f(x) \succeq m I\)</li>
+<li>当\(\nabla^{2} f(\beta)=X^{T} X\)，有\(L=\lambda_{\min }\left(X^{T} X\right)\)</li>
+<li>若\(X\)很宽（\(X\)是\(n \times p\)且\(p&gt;n\)），则\(\lambda_{\min }\left(X^{T} X\right)=0\)，所以\(f\)没有强凸性</li>
+<li>即使\(\sigma_{\min }(X)&gt;0\)，也可以有很大的条件数值\(L / m=\lambda_{\max }\left(X^{T} X\right) / \lambda_{\min }\left(X^{T} X\right)\)</li>
+</ul>
+</li>
+</ul>
+<h3 id="（四）实际应用：Practicalities"><a href="#（四）实际应用：Practicalities" class="headerlink" title="（四）实际应用：Practicalities"></a>（四）实际应用：Practicalities</h3><p>1、停止规则：当\(|\nabla f(x)|_{2}\)很小时停止</p>
+<ul>
+<li>\(\nabla f\left(x^{\star}\right)=0\)有解\(x^{\star}\)</li>
+<li>如果\(f\)具有强凸性，且有参数\(m\)，则：<br>$$<br>|\nabla f(x)|_{2} \leq \sqrt{2 m \epsilon} \Longrightarrow f(x)-f^{\star} \leq \epsilon<br>$$</li>
+</ul>
+<p>2、梯度下降的利弊：</p>
+<ul>
+<li>优点：想法简单，且通常情况下每次迭代成本较低</li>
+<li>优点：解决条件良好的强凸性问题速度很快</li>
+<li>缺点：可能会很慢，因为很多有趣的问题都不带有良好条件或强凸性的</li>
+<li>缺点：不能处理不可导的函数</li>
+</ul>
+<p>3、如何改进：</p>
+<ul>
+<li>对于凸的、可导的、有Lipschitz梯度的函数这类问题，梯度下降法有着\(O(1 / \epsilon)\)的收敛速度</li>
+<li>一阶方法：迭代方法，更新下式中的\(x^{(k)}\)</li>
+</ul>
+<p>$$<br>x^{(0)}+\operatorname{span}\left{\nabla f\left(x^{(0)}\right), \nabla f\left(x^{(1)}\right), \ldots \nabla f\left(x^{(k-1)}\right)\right}<br>$$</p>
+<ul>
+<li><p>Nesterov定理：对于任何\(k \leq(n-1) / 2\)和起始点\(x^{(0)}\)，这类问题中都有一个方程\(f\)，使得任何一阶方法满足：<br>$$<br>f\left(x^{(k)}\right)-f^{\star} \geq \frac{3 L\left|x^{(0)}-x^{\star}\right|_{2}^{2}}{32(k+1)^{2}}<br>$$</p>
+</li>
+<li><p>可以使收敛速度达到：\(O\left(1 / k^{2}\right)\)或\(O(1 / \sqrt{\epsilon})\)</p>
+</li>
+</ul>
+<h3 id="（五）非凸性问题分析：Analysis-for-nonconvex-case"><a href="#（五）非凸性问题分析：Analysis-for-nonconvex-case" class="headerlink" title="（五）非凸性问题分析：Analysis for nonconvex case"></a>（五）非凸性问题分析：Analysis for nonconvex case</h3><p>1、假设带有Lipschitz梯度的\(f\)是可导的，但是现在变成非凸性的，要求出最优化比较困难，我们先解决\( \epsilon\)-次优点\(x\)问题，即\(|\nabla f(x)|_{2} \leq \epsilon\)</p>
+<p>2、定理：带有固定步长\(t \leq 1 / L\)的梯度下降满足：</p>
+<p>$$<br>\min <em>{i=0, \ldots, k}\left|\nabla f\left(x^{(i)}\right)\right|</em>{2} \leq \sqrt{\frac{2\left(f\left(x^{(0)}\right)-f^{\star}\right)}{t(k+1)}}<br>$$</p>
+<p>3、所以梯度下降有\(O\left(1 / k^{2}\right)\)或\(O(1 / \sqrt{\epsilon})\)的速度，即使是在非凸的情况下。<br>4. 任何确定性算法都不能提高这个速率(利用Lipschitz梯度的一类可微函数)</p>
+<h2 id="八、梯度增强法：Gradient-boosting"><a href="#八、梯度增强法：Gradient-boosting" class="headerlink" title="八、梯度增强法：Gradient boosting"></a>八、梯度增强法：Gradient boosting</h2><p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D10.png" alt="Gradient Descent10"><br>1、给定相应\(y_{i} \in \mathbb{R}\)和特征\(x_{i} \in \mathbb{R}^{p}, i=1, \ldots, n\)，要建立一个基于特征的柔性(非线性)响应模型。树的加权总和：<br>$$<br>u_{i}=\sum_{j=1}^{m} \beta_{j} \cdot T_{j}\left(x_{i}\right), \quad i=1, \ldots, n<br>$$<br>每个树\(T_{j}\)输入\(x_{i}\)，输出预测的响应值，通常树都很短：</p>
+<p><img src="https://jrothschild.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D11.png" alt="Gradient Descent11"></p>
+<p>2、选择一个损失函数\(L\)用来反映设置，对于连续性反映值，比如可以选择：\(L\left(y_{i}, u_{i}\right)=\left(y_{i}-u_{i}\right)^{2}\)</p>
+<p>3、想要解决：<br>$$<br>\min <em>{\beta} \sum</em>{i=1}^{n} L\left(y_{i}, \sum_{j=1}^{M} \beta_{j} \cdot T_{j}\left(x_{i}\right)\right)<br>$$<br>索引所有固定大小的树(例如，depth = 5)，因此\(M\)是巨大的。空间实在太大，无法优化。</p>
+<p>4、梯度增强法：基本上是梯度下降法的一个版本，强迫与树一起工作。首先考虑优化\(\min _{u} f(u)\)，预测值\(u\)，限制条件为来自树的\(u\)</p>
+<p>5、从初始模型开始：一个简单的树\(u^{(0)}=T_{0}\)</p>
+<ul>
+<li>根据上个预测值\(u^{(k-1)}\)计算负梯度\(d\)</li>
+</ul>
+<p>$$<br>d_{i}=-\left.\left[\frac{\partial L\left(y_{i}, u_{i}\right)}{\partial u_{i}}\right]\right|<em>{u</em>{i}=u_{i}^{(k-1)}}, \quad i=1, \ldots, n<br>$$</p>
+<ul>
+<li><p>找到接近\(a\)的树\(T_{k}\)，即根据：<br>$$<br>\min <em>{\text {trees } T} \sum</em>{i=1}^{n}\left(d_{i}-T\left(x_{i}\right)\right)^{2}<br>$$<br>可见对于近似解决单一树的问题并不难</p>
+</li>
+<li><p>计算步长\(\alpha_{k}\)，更新我们的预测：<br>$$<br>u^{(k)}=u^{(k-1)}+\alpha_{k} \cdot T_{k}<br>$$<br>注：根据需要，预测值是树的加权总和</p>
+</li>
+</ul>
+<p>[^1]: S. Boyd and L. Vandenberghe (2004),“Convex optimization’，Chapter 9<br>[^2]: T. Hastie, R. Tibshirani and J. Friedman (2009)，“The elements of statistical learning” ，Chapters 10 and 16<br>[^3]: Y. Nesterov (1998), “Introductory lectures on convex optimization: a basic course”, Chapter 2<br>[^4]: L. Vandenberghe, Lecture notes for EE 236C, UCLA, Spring 2011-2012</p>
 
       
 
@@ -360,7 +467,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#作者：Ryan-Tibshirani"><span class="toc-number">1.</span> <span class="toc-text">作者：Ryan Tibshirani</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、正则凸规划：canonical-convex-programs"><span class="toc-number"></span> <span class="toc-text">一、正则凸规划：canonical convex programs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、梯度下降法：Gradient-descent"><span class="toc-number"></span> <span class="toc-text">二、梯度下降法：Gradient descent</span></a>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、正则凸规划：canonical-convex-programs"><span class="toc-number">1.</span> <span class="toc-text">一、正则凸规划：canonical convex programs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、梯度下降法：Gradient-descent"><span class="toc-number">2.</span> <span class="toc-text">二、梯度下降法：Gradient descent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、梯度下降法解释：Gradient-descent-interpretation"><span class="toc-number">3.</span> <span class="toc-text">三、梯度下降法解释：Gradient descent interpretation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、固定步长：Fixed-step-size"><span class="toc-number">4.</span> <span class="toc-text">四、固定步长：Fixed step size</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、回溯线搜索：Backtracking-line-search"><span class="toc-number">5.</span> <span class="toc-text">五、回溯线搜索：Backtracking line search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、精确线搜索：Exact-line-search"><span class="toc-number">6.</span> <span class="toc-text">六、精确线搜索：Exact line search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、收敛性分析：Convergence-analysis"><span class="toc-number">7.</span> <span class="toc-text">七、收敛性分析：Convergence analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）基本原理："><span class="toc-number">7.1.</span> <span class="toc-text">（一）基本原理：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）强凸性分析：Analysis-for-strong-convexity"><span class="toc-number">7.2.</span> <span class="toc-text">（二）强凸性分析：Analysis for strong convexity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）条件数值：A-look-at-the-conditions"><span class="toc-number">7.3.</span> <span class="toc-text">（三）条件数值：A look at the conditions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（四）实际应用：Practicalities"><span class="toc-number">7.4.</span> <span class="toc-text">（四）实际应用：Practicalities</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（五）非凸性问题分析：Analysis-for-nonconvex-case"><span class="toc-number">7.5.</span> <span class="toc-text">（五）非凸性问题分析：Analysis for nonconvex case</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、梯度增强法：Gradient-boosting"><span class="toc-number">8.</span> <span class="toc-text">八、梯度增强法：Gradient boosting</span></a></li></ol>
                     </div>
                 </span>
             </div>
